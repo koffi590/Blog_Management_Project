@@ -23,7 +23,7 @@
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="flex flex-col min-h-screen">
+    <body class="flex flex-col min-h-screen scroll-auto">
         <header class="bg-[#001840] h-15">
             <div class="flex justify-between items-center p-2.5 w-[85%] mx-auto">
                 <a href="#">
@@ -67,7 +67,7 @@
                     </div>
                 <div class="relative inline-block text-left h-[44px]">
                     @if (Auth::check())
-                    <button id="userBtn" class="bg-black text-white px-4 py-2 rounded-full focus:outline-none">
+                    <button id="userBtn" class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
                         {{ auth()->user()->name }}
                     </button>
                     <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg">
@@ -88,7 +88,7 @@
 
                         </button>
                     </div>
-                    <ion-icon onclick="onToggleMenu(this)" name="menu" class="  text-3xl cursor-pointer md:hidden"></ion-icon>
+                    <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon>
                     @else
                    <div class="flex flex-row gap-8">
                      <div class="flex items-center gap-6">
@@ -109,7 +109,7 @@
         </header>
         </header>
 
-        <section class="py-16 text-center text-white bg-cover bg-center relative overflow-hidden" style="background-image: url('/bande.png') max-h-screen">
+        <section class="py-16 text-center text-white bg-cover bg-center ">
 
         </section>
 
