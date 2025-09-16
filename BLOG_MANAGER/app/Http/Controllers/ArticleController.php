@@ -12,7 +12,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        
+        $articles = Article::with(['user'])
+                    ->latest()
+                    ->get(); 
     }
 
     /**
@@ -20,7 +22,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**

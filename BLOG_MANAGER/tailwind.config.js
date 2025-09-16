@@ -14,6 +14,11 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            fontSize: {
+
+            'responsive-heading': 'clamp(2rem, 5vw + 1rem, 4rem)',
+            'responsive-body': 'clamp(1rem, 2vw + 0.5rem, 1.5rem)',
+          },
         },
     },
 
