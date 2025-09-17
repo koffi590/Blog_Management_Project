@@ -17,7 +17,7 @@ class ArticleController extends Controller
         $articles = Article::with(['user'])
                     ->latest()
                     ->get();
-        return vien('welcome');
+        return view('welcome', compact('articles'));
     }
 
     /**

@@ -25,7 +25,7 @@
     <body class="flex flex-col min-h-screen scroll-auto">
         <header class="bg-[#001840] h-15">
             <div class="flex justify-between items-center p-2.5 w-[85%] mx-auto">
-                <a href="#">
+                <a href="/">
                     <img class="w-12 h-12" src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg" alt="logo">
                 </a>
                     <div class="nav-links bg-white md:bg-transparent duration-500 md:static absolute md:min-h-fit min-h-[22vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-2">
@@ -106,16 +106,6 @@
                 </div>
             </div>
         </header>
-        </header>
-        <!-- <div class="h-screen w-screen overflow-hidden">
-            Your banner content goes here
-            <div class="flex items-center justify-center text-black bg-[url('https://i.pinimg.com/736x/ae/48/4a/ae484a15a84631934a735e96ad73147d.jpg')] bg-cover bg-center h-screen">
-                <div class="flex flex-col">
-                    <h1 class="text-5xl font-bold text-nowrap text-responsive-body">WELCOME TO YOUR BLOG WEBSITE</h1>
-                    <p>YOUR CAN EXPRESS</p>
-                </div>
-            </div>
-        </div> -->
             <div class="w-full h-64 md:h-96 bg-cover bg-center" style="background-image: url('https://i.pinimg.com/736x/ae/48/4a/ae484a15a84631934a735e96ad73147d.jpg');">
                 <div class="h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
                     <div class="flex text-white flex-col items-center gap-8">
@@ -143,12 +133,18 @@
         </div>
         <section class="py-16 text-center text-white bg-cover bg-center ">
             <div class="grid">
-                <div class="card"></div>
+                
             </div>
         </section>
 
         
-        <main class="mt-6"></main>
+        <main class="mt-6">
+            <div class="card">
+                @foreach($articles as $art)
+                <div><img src="{{ $art->image }}" alt="" srcset=""></div>
+                @endforeach
+            </div>
+        </main>
 
         <footer class="py-16 text-center text-sm text-black dark:text-white/70">
             Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{
