@@ -131,19 +131,19 @@
                 </form>
             </div>
         </div>
-        <section class="py-16 text-center text-white bg-cover bg-center ">
-            <div class="grid">
-                
+        <section class="p-4 mt-8 py-16 text-center text-white bg-cover bg-center ">
+            <div class="grid grid-cols-3 grid-rows-2 justify-center items-center gap-4 w-500">
+                @foreach($articles as $art)
+                    <div class="bg-blue-300 p-4 rounded border-black">
+                        <div><img src="{{ $art->image }}" alt="article_img" class="h-40 w-40"></div>
+                    </div>
+                @endforeach
             </div>
         </section>
 
-        
-        <main class="mt-6">
-            <div class="card">
-                @foreach($articles as $art)
-                <div><img src="{{ $art->image }}" alt="" srcset=""></div>
-                @endforeach
-            </div>
+
+        <main class="p-4 mt-8">
+
         </main>
 
         <footer class="py-16 text-center text-sm text-black dark:text-white/70">
@@ -155,7 +155,7 @@
             function onToggleMenu(e) {
                 e.name = e.name === "menu" ? "close" : "menu";
                 navLinks.classList.toggle("top-[6%]");
-                navLinks.style.backgroundColor = 'black';
+                navLinks.style.backgroundColor === 'bla' ? 'black' : 'none';
                 navLinks.style.display = 'flex';
                 navLinks.style.justifyContent = 'center';
             }
@@ -170,6 +170,8 @@
                     !dropdownMenu.contains(e.target)
                 ) {
                     dropdownMenu.classList.add("hidden");
+                    navLinks.style.backgroundColor = 'none';
+
                 }
             });
 

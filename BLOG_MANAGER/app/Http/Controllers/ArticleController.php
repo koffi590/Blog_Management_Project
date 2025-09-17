@@ -16,6 +16,7 @@ class ArticleController extends Controller
     {
         $articles = Article::with(['user'])
                     ->latest()
+                    ->limit(6)
                     ->get();
         return view('welcome', compact('articles'));
     }
@@ -50,7 +51,7 @@ class ArticleController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-            
+
         return redirect('/')->with('success', 'Article create successfully.');
     }
 
