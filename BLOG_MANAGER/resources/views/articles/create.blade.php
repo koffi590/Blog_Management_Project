@@ -119,12 +119,12 @@
         <div class="w-full h-64 md:h-96 bg-cover bg-center" style="background-image: url('https://i.pinimg.com/736x/ae/48/4a/ae484a15a84631934a735e96ad73147d.jpg');">
             <div class="h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
                 <div class="flex flex-col items-center gap-8">
-                    <h1 class="text-4xl font-bold text-nowrap text-responsive-body text-white">WELCOME TO YOUR BLOG WEBSITE</h1>
-                    <p class="text-white">Share your kwonledges about themes that interest you...</p>
+                    <h1 class="text-4xl font-bold text-responsive-body text-white text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">WELCOME TO YOUR BLOG WEBSITE</h1>
+                    <p class="text-white text-responsive-body text-sm sm:text-base md:text-lg">Share your kwonledges about themes that interest you...</p>
                 </div>
             </div>
         </div>
-        <main class="flex flex-row justify-center align-items mt-6">
+        <main class="flex flex-row justify-center align-items mt-6 w-full px-4 py-2">
             <div class="p-6 md:p-8 rounded-lg shadow-lg w-full max-w-lg" style="background: #001840;">
             <h2 class="text-2xl mb-6 text-center text-white">CREATE AN ARTICLE</h2>
 
@@ -146,34 +146,36 @@
                 </div>
             @endif
 
-            <div class="flex justify-center w-full">
+            <div class="flex justify-center p-2 place-content-center">
                 <form action="{{ route('articles.store')}}" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
 
                 <!-- Titre -->
-                <div>
+                <div class="w-80">
                     <label for="title" class="block font-medium mb-1 text-white">Title</label>
                     <input type="text" name="title" id="title"
-                        class="w-full border p-2 rounded"
+                        class="w-full border p-4 rounded"
                         style="background-color: white;"
                         placeholder="Type the title of your article please"
                         value="{{ old('title') }}" required>
                 </div>
 
                 <!-- URL de l'image -->
-                <div>
+                <div class="w-80">
                     <label for="image" class="block font-medium mb-1 text-white form-control">Image URL</label>
                     <input type="url" name="image" id="image"
                         class="w-full border p-2 rounded"
                         style="background-color:  white;"
+                        placeholder="Paste your article url here please"
                         value="{{ old('image') }} ">
                 </div>
 
                 <!-- Description -->
-                <div>
+                <div class="w-80">
                     <label for="description" class="block font-medium mb-1 text-white">Description</label>
                     <textarea name="description" id="description" rows="5"
                             class="w-full border p-2 rounded"
+                            placeholder="Explain a little bit please"
                             style="background-color: white;"
                             required>{{ old('description') }}</textarea>
                 </div>
@@ -202,7 +204,11 @@
             function onToggleMenu(e) {
                 e.name = e.name === "menu" ? "close" : "menu";
                 navLinks.classList.toggle("top-[6%]");
-                navLinks.style.backgroundColor = 'black';
+                if(navLinks.classList.contains('top-[6%]')) {
+                    navLinks.style.backgroundColor = 'black';
+                } else {
+                    navLinks.style.backgroundColor = '#0000';
+                }
                 navLinks.style.display = 'flex';
                 navLinks.style.justifyContent = 'center';
             }

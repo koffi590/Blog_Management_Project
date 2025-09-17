@@ -52,7 +52,7 @@ class ArticleController extends Controller
         ]);
 
 
-        return redirect('/')->with('success', 'Article create successfully.');
+        return redirect('/')->with('success', 'Article created successfully.');
     }
 
     /**
@@ -68,7 +68,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -76,9 +76,24 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $updateData = $request->validate([
+            'title' => 'required|string|max:255',
+           'image' => 'nullable|url',
+           'description' => 'required|string',
+        ]);
+
+        $article->update($updateData);
+        return redirect('/')->with('success', 'Article updated successfully');
+
     }
 
+    public function allArticles() {
+        $articles = Article::with(['user'])
+                    ->latest()
+                    ->limit(6)
+                    ->get();
+        return view('articles.index', compact('articles'));
+    }
     /**
      * Remove the specified resource from storage.
      */

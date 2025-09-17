@@ -9,6 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/', [ArticleController::class, 'index'])->name('welcome');
+Route::get('/articles', [ArticleController::class, 'allArticles'])->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -17,6 +18,8 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/article/create', [ArticleController::class, 'create'])->name('articles.create');
     Route::post('/article/create', [ArticleController::class, 'store'])->name('articles.store');
+    Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('articles.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
