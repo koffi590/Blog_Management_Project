@@ -120,18 +120,13 @@
             <div class="h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
                 <div class="flex flex-col items-center gap-8">
                     <h1 class="text-4xl font-bold text-nowrap text-responsive-body text-white">WELCOME TO YOUR BLOG WEBSITE</h1>
-                    <p class="text-white">Share your kwonledges about themes that can interest you...</p>
-                    <div> </div>
-                    <div> </div>
-                    <button class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                        <a href="{{ route('articles.create') }}">Let's write an articles</a>
-                    </button>
+                    <p class="text-white">Share your kwonledges about themes that interest you...</p>
                 </div>
             </div>
         </div>
         <main class="flex flex-row justify-center align-items mt-6">
-            <div class="p-6 md:p-8 rounded-lg shadow-lg w-full max-w-lg" style="background: #f5c4002d;">
-            <h2 class="text-2xl font-bold mb-6 text-center text-black">create a post</h2>
+            <div class="p-6 md:p-8 rounded-lg shadow-lg w-full max-w-lg" style="background: #001840;">
+            <h2 class="text-2xl mb-6 text-center text-white">CREATE AN ARTICLE</h2>
 
             <!-- Affichage des erreurs -->
             @if($errors->any())
@@ -151,12 +146,13 @@
                 </div>
             @endif
 
-            <form action="{{ route('articles.store')}}" method="POST" enctype="multipart/form-data" class="space-y-4">
+            <div class="flex justify-center w-full">
+                <form action="{{ route('articles.store')}}" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
 
                 <!-- Titre -->
                 <div>
-                    <label for="title" class="block font-medium mb-1 text-black">Title</label>
+                    <label for="title" class="block font-medium mb-1 text-white">Title</label>
                     <input type="text" name="title" id="title"
                         class="w-full border p-2 rounded"
                         style="background-color: white;"
@@ -166,30 +162,34 @@
 
                 <!-- URL de l'image -->
                 <div>
-                    <label for="image" class="block font-medium mb-1 text-black">URL</label>
+                    <label for="image" class="block font-medium mb-1 text-white">Image URL</label>
                     <input type="file" name="image" id="image"
-                        placeholder="https://example.com/image.jpg"
                         class="w-full border p-2 rounded"
                         style="background-color:  white;"
-                        value="{{ old('image_url') }}">
+                        value="{{ old('image_url') }} " required>
                 </div>
 
-                <!-- Contenu -->
+                <!-- Description -->
                 <div>
-                    <label for="content" class="block font-medium mb-1 text-black">Your comment</label>
+                    <label for="content" class="block font-medium mb-1 text-white">Description</label>
                     <textarea name="content" id="content" rows="5"
                             class="w-full border p-2 rounded"
                             style="background-color: white;"
                             required>{{ old('content') }}</textarea>
                 </div>
 
-                
+                <div class="flex justify-center gap-8">
+                     <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
+                        Post
+                    </button>
+                    <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
+                        <a href="/">back</a>
+                    </button>
+                </div>
 
-                <button type="submit"
-                        class="w-full bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded font-bold">
-                    Submit
-                </button>
             </form>
+            </div>
+
         </div>
         </main>
 
@@ -204,7 +204,7 @@
                 navLinks.classList.toggle("top-[6%]");
                 navLinks.style.backgroundColor = 'black';
                 navLinks.style.display = 'flex';
-                navLinks.style.justifyContent = 'center';           
+                navLinks.style.justifyContent = 'center';
             }
             const userBtn = document.getElementById("userBtn");
             const dropdownMenu = document.getElementById("dropdownMenu");

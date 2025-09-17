@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    //
+    protected $fillable = [
+        'title',
+        'image_url',
+        'description',
+        'user_id'
+    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -14,7 +14,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/article/create', [ArticleController::class, 'create'])->name('articles.create');
-    // Route::post('/article/create', [ArticleController::class, 'store'])->name('articles.store');
+    Route::post('/article/create', [ArticleController::class, 'store'])->name('articles.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

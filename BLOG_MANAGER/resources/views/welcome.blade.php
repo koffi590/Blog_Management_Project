@@ -124,7 +124,7 @@
                         <div> </div>
                         <div> </div>
                         <button class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a href="{{ route('articles.create') }}">Let's write an articles</a>
+                            <a href="{{ route('articles.create') }}">Let's write an article</a>
                         </button>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                 navLinks.classList.toggle("top-[6%]");
                 navLinks.style.backgroundColor = 'black';
                 navLinks.style.display = 'flex';
-                navLinks.style.justifyContent = 'center';           
+                navLinks.style.justifyContent = 'center';
             }
             const userBtn = document.getElementById("userBtn");
             const dropdownMenu = document.getElementById("dropdownMenu");
