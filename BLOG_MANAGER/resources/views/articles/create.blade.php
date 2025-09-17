@@ -162,20 +162,20 @@
 
                 <!-- URL de l'image -->
                 <div>
-                    <label for="image" class="block font-medium mb-1 text-white">Image URL</label>
-                    <input type="file" name="image" id="image"
+                    <label for="image" class="block font-medium mb-1 text-white form-control">Image URL</label>
+                    <input type="url" name="image" id="image"
                         class="w-full border p-2 rounded"
                         style="background-color:  white;"
-                        value="{{ old('image_url') }} " required>
+                        value="{{ old('image') }} ">
                 </div>
 
                 <!-- Description -->
                 <div>
-                    <label for="content" class="block font-medium mb-1 text-white">Description</label>
-                    <textarea name="content" id="content" rows="5"
+                    <label for="description" class="block font-medium mb-1 text-white">Description</label>
+                    <textarea name="description" id="description" rows="5"
                             class="w-full border p-2 rounded"
                             style="background-color: white;"
-                            required>{{ old('content') }}</textarea>
+                            required>{{ old('description') }}</textarea>
                 </div>
 
                 <div class="flex justify-center gap-8">

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
-use Embed\Embed;
+
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -16,6 +17,7 @@ class ArticleController extends Controller
         $articles = Article::with(['user'])
                     ->latest()
                     ->get();
+        return vien('welcome');
     }
 
     /**
@@ -31,24 +33,25 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $embed= new Embed();
-        $info=$embed->get($request->image);
+        // $embed= new Embed();
+        // $info=$embed->get($request->image);
 
         $request->validate([
-            'title'      => 'required|string|max:255',
-            'image_url' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'description'    => 'required|string',
+            'title' => 'required|string|max:255',
+           'image' => 'nullable|url',
+            'description' => 'required|string',
 
         ]);
 
-        Post::create([
+        Article::create([
             'title'   => $request->title,
-            'image_url' => $info->image_url,
+            'image' => $request->image,
             'description' => $request->description,
             'user_id' => Auth::id(),
         ]);
 
-        return redirect('/')->with('success', 'Post créé avec succès !');
+            
+        return redirect('/')->with('success', 'Article create successfully.');
     }
 
     /**

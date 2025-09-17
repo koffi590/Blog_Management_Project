@@ -129,11 +129,7 @@
                     </div>
                 </div>
             </div>
-        <section class="py-16 text-center text-white bg-cover bg-center ">
-
-        </section>
-
-        <div class="flex justify-center mt-6">
+            <div class="flex justify-center mt-6">
             <div class="w-1/2">
                 <form action="{{ route('dashboard') }}" method="GET" class="flex justify-center mt-6">
                     <input type="text" name="search" placeholder="Titre du post..." value="{{ request('search') }}" class="w-full p-3 pl-10 rounded-full bg-gray-200" autocomplete="off">
@@ -145,6 +141,13 @@
                 </form>
             </div>
         </div>
+        <section class="py-16 text-center text-white bg-cover bg-center ">
+            <div class="grid">
+                <div class="card"></div>
+            </div>
+        </section>
+
+        
         <main class="mt-6"></main>
 
         <footer class="py-16 text-center text-sm text-black dark:text-white/70">
