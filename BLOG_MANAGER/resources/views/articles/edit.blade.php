@@ -48,7 +48,7 @@
                             </li>
                             <li>
                                  <a
-                                    href="{{ url('/') }}"
+                                    href="{{ url('/articles') }}"
                                     class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                 >
                                     ARTICLES
@@ -106,16 +106,6 @@
                 </div>
             </div>
         </header>
-        </header>
-        <!-- <div class="h-screen w-screen overflow-hidden">
-            Your banner content goes here
-            <div class="flex items-center justify-center text-black bg-[url('https://i.pinimg.com/736x/ae/48/4a/ae484a15a84631934a735e96ad73147d.jpg')] bg-cover bg-center h-screen">
-                <div class="flex flex-col">
-                    <h1 class="text-5xl font-bold text-nowrap text-responsive-body">WELCOME TO YOUR BLOG WEBSITE</h1>
-                    <p>YOUR CAN EXPRESS</p>
-                </div>
-            </div>
-        </div> -->
         <div class="w-full h-64 md:h-96 bg-cover bg-center" style="background-image: url('https://i.pinimg.com/736x/ae/48/4a/ae484a15a84631934a735e96ad73147d.jpg');">
             <div class="h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
                 <div class="flex flex-col items-center gap-8">
@@ -194,9 +184,14 @@
         </div>
         </main>
 
-        <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{
-            PHP_VERSION }})
+        <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-8">
+            <ul class="flex flex-row gap-8 justify-center">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/articles">ARTICLES</a></li>
+                <li><a href="/contact">CONTACT US</a></li>
+            </ul
+            <p>&copy; 2025 BLOGER. All rights reserved.</p>
         </footer>
         <script>
             const navLinks = document.querySelector(".nav-links");

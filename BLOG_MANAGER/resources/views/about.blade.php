@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/articles') }}"
+                        <a href="{{ url('/') }}"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             ARTICLES
                         </a>
@@ -114,72 +114,51 @@
                     class="text-4xl font-bold text-responsive-body text-white text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">
                     WELCOME TO YOUR BLOG WEBSITE</h1>
                 <p class="text-white text-responsive-body text-sm sm:text-base md:text-lg">Share your kwonledges about
-                    themes that interest you...
-                </p>
+                    themes that interest you...</p>
+                <div> </div>
+                <div> </div>
+                <button
+                    class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                    <a href="{{ route('articles.create') }}">Let's write an article</a>
+                </button>
             </div>
         </div>
     </div>
-    <div class="flex justify-center mt-8">
-        <div class="w-1/2">
-            <form action="{{ route('dashboard') }}" method="GET" class="flex justify-center mt-6 gap-5">
-                <input type="text" name="search" placeholder="Titre du post..." value="{{ request('search') }}"
-                    class="w-full p-3 pl-10 rounded-full bg-gray-200" autocomplete="off">
-                <button type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-12">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>
-                </button>
-            </form>
-        </div>
-    </div>
 
-    <section class="p-5 mt-1 py-16 text-center text-white bg-cover bg-center ">
-        <h2 class="text-2xl mb-6 text-center text-black">• ARTICLES •</h2>
-        @if (Auth::check()) {
-                 <a href="/article/create">
-                    <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
-                        ADD AN ARTICLE
+    <section class="p-5 mt-1 py-16 text-center text-white bg-cover bg-center w-full">
+        <h2 class="text-2xl mb-6 w-full text-center text-black">• ABOUT •</h2>
+        <div class="grid grid-cols-1 w-full">
+           <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
+            <div class="md:flex">
+                <div class="md:shrink-0">
+                    <a href="/">
+                        <img class="w-60 h-60 md:flex h-50 w-full"
+                            src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg"
+                            alt="logo">
+                    </a>
+                </div>
+                <div class="p-8">
+                    <div class="text-sm font-semibold tracking-wide text-indigo-500 uppercase">
+                        BLOG WEBSITE
+                    </div>
+                    <a href="#" class="mt-1 block text-lg leading-tight font-medium text-black">
+                        Express all your imagination
+                    </a>
+                    <p class="mt-2 text-gray-500">
+                        Looking to spend your time-out writing to share experiences you had or some knowledges with others, joking, making fun and share your feelings with your followers...
+                    </p>
+                </div>
+            </div><hr>
+            <div class="p-8 flex flex-row justify-center">
+                    <button
+                        class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                        <a href="/contact">CONTACT US</a>
                     </button>
-                </a>
-            }
-            @endif
-        <div class="grid grid-cols-1 gap-10 p-4 sm:grid-cols-2 md:grid-cols-3 place-content-center gap-10 w-full">
-
-            @foreach($articles as $art)
-                    <div class="bg-[#001840] p-4 rounded-2xl border-black flex flex-col items-center gap-4">
-                        <div class="grid grid-cols-1 gap-10">
-                            <img src="{{ $art->image }}" alt="article_img" class="h-40 w-80 rounded">
-                            <h1 class="font-bold w-60 truncate">{{ $art->title }}</h1>
-                        </div>
-                        <div> </div>
-                        <div class="font-bold">
-                            <p class="w-60 truncate text-gray-400">{{ $art->description }}</p>
-                        </div>
-                        <div class="grid grid-cols-2">
-                           <!-- <div class="flex flex-row gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                                </svg>
-                                <p class="text-[#a0aec0] dark:text-white-400/50">{{ $art->user->name }}</p>
-                            </div>
-                            <div class="flex flex-row gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
-                                </svg>
-                                <p class="text-[#a0aec0] dark:text-white-400/50 text-wrap">{{ $art->created_at }}</p></div> -->
-                            </div>
-                           <a href="{{ url('articles' , [ 'id' => $art->id ]) }}">
-                                <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
-                                    SEE MORE
-                                </button>
-                            </a>
-                        </div>
-                @endforeach
+                </div>
         </div>
-         {{ $articles->links() }}
+        </div>
     </section>
+
 
     <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-8">
         <ul class="flex flex-row gap-8 justify-center">
@@ -188,7 +167,7 @@
             <li><a href="/articles">ARTICLES</a></li>
             <li><a href="/contact">CONTACT US</a></li>
         </ul
-        <p>&copy; 2025 BLOGER. All rights reserved.</p>
+        <p> &copy; 2025 BLOGER. All rights reserved.</p>
     </footer>
     <script>
         const navLinks = document.querySelector(".nav-links");

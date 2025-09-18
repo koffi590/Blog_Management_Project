@@ -60,7 +60,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('articles.show', compact('article'));
     }
 
     /**
@@ -90,8 +90,7 @@ class ArticleController extends Controller
     public function allArticles() {
         $articles = Article::with(['user'])
                     ->latest()
-                    ->limit(6)
-                    ->get();
+                    ->paginate(6);
         return view('articles.index', compact('articles'));
     }
     /**
@@ -99,6 +98,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->back()->with('success', 'Article deleted successfully');
     }
 }

@@ -48,7 +48,7 @@
                             </li>
                             <li>
                                  <a
-                                    href="{{ url('/') }}"
+                                    href="{{ url('/articles') }}"
                                     class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                 >
                                     ARTICLES
@@ -195,10 +195,15 @@
         </div>
         </main>
 
-        <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{
-            PHP_VERSION }})
-        </footer>
+        <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-8">
+        <ul class="flex flex-row gap-8 justify-center">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/articles">ARTICLES</a></li>
+            <li><a href="/contact">CONTACT US</a></li>
+        </ul
+        <p>&copy; 2025 BLOGER. All rights reserved.</p>
+    </footer>
         <script>
             const navLinks = document.querySelector(".nav-links");
             function onToggleMenu(e) {

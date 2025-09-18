@@ -7,9 +7,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/about', function () {
+    return view('about');
+});
 
+Route::get('/contact', function () {
+    return view('contact');
+});
 Route::get('/', [ArticleController::class, 'index'])->name('welcome');
 Route::get('/articles', [ArticleController::class, 'allArticles'])->name('welcome');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
