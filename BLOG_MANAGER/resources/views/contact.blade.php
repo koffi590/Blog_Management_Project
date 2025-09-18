@@ -20,7 +20,7 @@
 
 <body class="flex flex-col min-h-screen scroll-auto">
     <header class="bg-[#001840] h-15">
-        <div class="flex justify-between items-center p-2.5 w-[85%] mx-auto">
+        <div class="flex text-nowrap justify-between items-center p-2.5 w-[85%] mx-auto">
             <a href="/">
                 <img class="w-12 h-12"
                     src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg"
@@ -94,10 +94,6 @@
                         </button>
                     </div>
                     <div class="flex items-center gap-6">
-                        <button
-                            class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a class=" py-3 px-5" href="{{ route('register') }}">REGISTER</a>
-                        </button>
                         <ion-icon onclick="onToggleMenu(this)" name="menu"
                             class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
                     </div>
@@ -158,16 +154,15 @@
             </div>
         </div>
     </section>
-
-
-    <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-8">
-        <ul class="flex flex-row gap-8 justify-center">
-            <li><a href="/">HOME</a></li>
-            <li><a href="/about">ABOUT</a></li>
-            <li><a href="/articles">ARTICLES</a></li>
-            <li><a href="/contact">CONTACT US</a></li>
-        </ul
-        <p> &copy; 2025 BLOGER. All rights reserved.</p>
+    <div class="py-9"> </div>
+     <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-8">
+            <ul class="flex flex-row gap-8 justify-center">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="/articles">ARTICLES</a></li>
+                <li><a href="/contact">CONTACT US</a></li>
+            </ul
+            <p>&copy; 2025 BLOGER. All rights reserved.</p>
     </footer>
     <script>
         const navLinks = document.querySelector(".nav-links");

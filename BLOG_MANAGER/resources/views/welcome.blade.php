@@ -12,7 +12,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -20,7 +21,7 @@
 
 <body class="flex flex-col min-h-screen scroll-auto">
     <header class="bg-[#001840] h-15">
-        <div class="flex justify-between items-center p-2.5 w-[85%] mx-auto">
+        <div class="flex text-nowrap justify-between items-center p-2.5 w-[85%] mx-auto">
             <a href="/">
                 <img class="w-12 h-12"
                     src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg"
@@ -94,10 +95,6 @@
                         </button>
                     </div>
                     <div class="flex items-center gap-6">
-                        <button
-                            class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a class=" py-3 px-5" href="{{ route('register') }}">REGISTER</a>
-                        </button>
                         <ion-icon onclick="onToggleMenu(this)" name="menu"
                             class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
                     </div>
@@ -106,7 +103,7 @@
             </div>
         </div>
     </header>
-    <div class="w-full h-64 md:h-96 bg-cover bg-center"
+    <div class="w-full h-64 md:h-96 bg-cover bg-center "
         style="background-image: url('https://i.pinimg.com/736x/ae/48/4a/ae484a15a84631934a735e96ad73147d.jpg');">
         <div class="h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
             <div class="flex flex-col items-center gap-8">
@@ -143,45 +140,168 @@
     <section class="p-5 mt-1 py-16 text-center text-white bg-cover bg-center w-full">
         <h2 class="text-2xl mb-6 w-full text-center text-black">• ABOUT •</h2>
         <div class="grid grid-cols-1 w-full">
-           <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
-            <div class="md:flex">
-                <div class="md:shrink-0">
-                    <a href="/">
-                        <img class="w-60 h-60 md:flex h-50 w-full"
-                            src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg"
-                            alt="logo">
-                    </a>
-                </div>
-                <div class="p-8">
-                    <div class="text-sm font-semibold tracking-wide text-indigo-500 uppercase">
-                        BLOG WEBSITE
+            <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
+                <div class="md:flex">
+                    <div class="md:shrink-0">
+                        <a href="/">
+                            <img class="w-60 h-60 md:flex h-50 w-full"
+                                src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg"
+                                alt="logo">
+                        </a>
                     </div>
-                    <a href="#" class="mt-1 block text-lg leading-tight font-medium text-black">
-                        Express all your imagination
-                    </a>
-                    <p class="mt-2 text-gray-500">
-                        Looking to spend your time-out writing to share experiences you had or some knowledges with others, joking, making fun and share your feelings with your followers...
-                    </p>
+                    <div class="p-8">
+                        <div class="text-sm font-semibold tracking-wide text-indigo-500 uppercase">
+                            BLOG WEBSITE
+                        </div>
+                        <a href="#" class="mt-1 block text-lg leading-tight font-medium text-black">
+                            Express all your imagination
+                        </a>
+                        <p class="mt-2 text-gray-500">
+                            Looking to spend your time-out writing to share experiences you had or some knowledges with
+                            others, joking, making fun and share your feelings with your followers...
+                        </p>
+                    </div>
                 </div>
-            </div><hr>
-            <div class="p-8 flex flex-row justify-center">
+                <hr>
+                <div class="p-8 flex flex-row justify-center">
                     <button
                         class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                        <a href="{{ route('articles.create') }}">CONTACT US</a>
+                        <a href="/contact">CONTACT US</a>
                     </button>
                 </div>
-        </div>
+            </div>
         </div>
     </section>
-    <section class="p-5 mt-1 py-5 text-center text-white bg-cover bg-center ">
+
+    <h2 class="text-2xl mb-6 w-full text-center text-black">• ARTICLES •</h2>
+    @if(count($articles) < 1)
+    <p class="text-xl mb-6 w-full text-center text-black"> THERE'S NO ARTICLE</p>
+    <p class="text-xl mb-6 w-full text-center text-black"> START WRITE YOUR</p>
+    @endif
+    @foreach ($articles as $article)
+    <section class="p-5 mt-1 py-16 text-center text-white bg-cover bg-center w-full">
+        <div class="grid grid-cols-1">
+            <!-- <div class="p-8 flex flex-col justify-center ">
+                <div class="flex flex-col gap-2">
+                    <div class="flex flex-row gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="black" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        <h1 class="block text-lg leading-tight font-medium text-black">
+                            {{ $article->user->name }}
+                        </h1>
+                    </div>
+                    <div class="mt-5 md:shrink-0">
+                        <a href="/">
+                            <img class="w-60 h-60 md:flex h-50"
+                                src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg"
+                                alt="logo">
+                        </a>
+                    </div>
+                     <div class="flex flex-col">
+                        <div class="md-5">
+                            <p class="mt-2 text-gray-500 flex flex-row">
+                                Looking to spend your time-out writing to share experiences you had or some knowledges
+                                with others, joking, making fun and share your feelings with your followers...
+                            </p>
+                        </div>
+                        <div class="md-5">
+                            <p class="mt-2 text-gray-500">
+                               oiuop {{ $article->description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
+                <div class=" bg-[#001840] flex flex-row gap-2 py-2 p-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="gray" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        <h1 class="block text-lg leading-tight font-medium text-white">
+                            {{ $article->user->name }}
+                        </h1>
+                    </div>
+                    <div class="bg-[#001840] grid grid-cols-2">
+                        <div class="flex flex-row p-5">
+                        <h1 class="font-bold text-white mt-2">{{ $article->title }}</h1>
+                        </div>
+                        <div class="flex flex-row-reverse p-5 text-gray-500">
+                            {{ $article->created_at }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class=" bg-[#001840] md:flex">
+                        <div class="md:shrink-0 p-4">
+                            <img class="w-60 h-60 md:flex h-50 w-full"
+                                    src="{{ $article->image }}"
+                                    alt="logo">
+                        </div>
+
+                        <div class="p-8">
+                            <p class="text-gray-300 line-clamp-6 w-80">
+                                {{ $article->description }}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="p-8 flex flex-row justify-center bg-[#001840]">
+                        @if(Auth::check() && auth()->user()->name === $article->user->name)
+                        <div class="flex flex-row gap-2">
+                            <button
+                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                <a href="{{ url('articles' , [ 'id' => $article->id ]) }}">SEE MORE</a>
+                            </button>
+                            <button
+                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                <a href="{{ route('articles.create') }}">COMMENT</a>
+                            </button>
+                            <button
+                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                <a href="{{ url('articles' , [ 'id' => $article->id ]) }}/edit">EDIT</a>
+                            </button>
+                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?');">
+                                @csrf 
+                                @method('DELETE')
+                                <button type="submit" class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                    DELETE
+                                </button>
+                            </form>
+                        </div>
+                        @else
+                        <div class="flex flex-row gap-2">
+                        <button
+                            class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                            <a href="{{ url('articles' , [ 'id' => $article->id ]) }}">SEE MORE</a>
+                        </button>
+                        <button
+                            class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                            <a href="{{ route('articles.create') }}">COMMENT</a>
+                        </button>
+                        </div>
+                        @endif
+                    </div>
+            </div>
+        </div>
+    </section>
+    @endforeach
+
+
+    <!-- <section class="p-5 mt-1 py-5 text-center text-white bg-cover bg-center ">
         <h2 class="text-2xl mb-6 text-center text-black">• ARTICLES •</h2>
         <div class="grid grid-cols-1 gap-10 p-4 place-content-center gap-10 w-full">
             @foreach($articles as $art)
-                    <!-- <div class="bg-[#001840] p-4 rounded-2xl border-black flex flex-col items-center justify-center gap-4">
+            <p class="text-black">gfhgfh</p>
+            <div class="bg-[#001840] p-4 rounded-2xl border-black flex flex-col items-center justify-center gap-4">
                         <div class="grid grid-cols-1 gap-10">
                             <img src="{{ $art->image }}" alt="article_img" class="h-24 w-60 rounded">
                             <h1 class="font-bold w-60 truncate">{{ $art->title }}</h1>
                         </div>
+                    
                         <div> </div>
                         <div class="font-bold">
                             <p class="w-40 truncate text-gray-400">{{ $art->description }}</p>
@@ -204,51 +324,22 @@
                                     SEE MORE
                                 </button>
                             </a>
-                        </div> -->
-        <div class="grid grid-cols-1 w-full">
-           <div class="grid grid-cols-1 w-full overflow-hidden rounded-xl bg-white shadow-md">
-            <div class="md:flex">
-                <div class="md:shrink-0">
-                    <a href="/">
-                        <img class="w-60 h-60 h-50 w-full"
-                            src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg"
-                            alt="logo">
-                    </a>
-                </div>
-                <div class="p-8">
-                    <div class="text-sm font-semibold tracking-wide text-indigo-500 uppercase">
-                        BLOG WEBSITE
-                    </div>
-                    <a href="#" class="mt-1 block text-lg leading-tight font-medium text-black">
-                        Express all your imagination
-                    </a>
-                    <p class="mt-2 text-gray-500">
-                        Looking to spend your time-out writing to share experiences you had or some knowledges with others, joking, making fun and share your feelings with your followers...
-                    </p>
-                </div>
-            </div><hr>
-            <div class="p-8 flex flex-row justify-center">
-                    <button
-                        class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                        <a href="{{ route('articles.create') }}">CONTACT US</a>
-                    </button>
-                </div>
-        </div>
-        </div>
-                @endforeach
+                        </div>
+            @endforeach
         </div>
         <div class="flex flex-row justify-center">
             <a href="/articles">
-                <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
+                <button
+                    class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
                     MORE ARTICLES
                 </button>
             </a>
         </div>
-    </section>
+    </section> -->
     <section class="p-5 mt-1 py-5 text-center text-white bg-cover bg-center w-full">
         <h2 class="text-2xl mb-6 w-full text-center text-black">• JOIN US •</h2>
         <div class="grid grid-cols-1 w-full">
-           <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
+            <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
                 <div class="md:flex">
                     <div class="md:shrink-0">
                         <a href="/">
@@ -259,21 +350,28 @@
                     </div>
                     <div class="flex flex-col justify-center p-8 gap-8">
                         <div class="text-sm font-semibold tracking-wide text-black uppercase flex flex-row gap-5">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                             </svg>
                             <p>we.code LPSY</p>
                         </div>
                         <div class="text-sm font-semibold tracking-wide text-black uppercase flex flex-row gap-5">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z" />
                             </svg>
                             <p>we.blog@gmail.com</p>
                         </div>
                         <div class="text-sm font-semibold tracking-wide text-black uppercase flex flex-row gap-5">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
                             </svg>
                             <p>we.blog@gmail.com</p>
                         </div>
@@ -290,8 +388,7 @@
             <li><a href="/about">ABOUT</a></li>
             <li><a href="/articles">ARTICLES</a></li>
             <li><a href="/contact">CONTACT US</a></li>
-        </ul
-        <p> &copy; 2025 BLOGER. All rights reserved.</p>
+        </ul <p> &copy; 2025 BLOGER. All rights reserved.</p>
     </footer>
     <script>
         const navLinks = document.querySelector(".nav-links");
@@ -346,6 +443,26 @@
             let form = document.getElementById("edit-form-" + id);
             form.classList.toggle("hidden");
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            prevent.default()
+            const deleteButton = document.querySelectorAll('.deleteBtn')
+            deleteButton.foreach(button => {
+            button.addEventListener('click', function() {
+                const articleId = this.dataset.id;
+                const conf = alert('Are you sure you want to delete this article?');
+                if(conf) {
+                    const form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = `/articles/${articleId}`;
+                        form.innerHTML = `
+                            @csrf
+                            @method('DELETE')
+                        `;
+                        document.body.appendChild(form);
+                        form.submit();
+                }
+            })})
+        })
     </script>
 </body>
 

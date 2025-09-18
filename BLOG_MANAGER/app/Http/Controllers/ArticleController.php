@@ -16,7 +16,7 @@ class ArticleController extends Controller
     {
         $articles = Article::with(['user'])
                     ->latest()
-                    ->limit(6)
+                    ->limit(4)
                     ->get();
         return view('welcome', compact('articles'));
     }
@@ -90,7 +90,7 @@ class ArticleController extends Controller
     public function allArticles() {
         $articles = Article::with(['user'])
                     ->latest()
-                    ->paginate(6);
+                    ->paginate(2);
         return view('articles.index', compact('articles'));
     }
     /**

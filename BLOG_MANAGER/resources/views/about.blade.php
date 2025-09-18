@@ -36,19 +36,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}"
+                        <a href="{{ url('/about') }}"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             ABOUT
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}"
+                        <a href="{{ url('/articles') }}"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             ARTICLES
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}"
+                        <a href="{{ url('/contact') }}"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             CONTACT US
                         </a>
@@ -92,14 +92,6 @@
                             class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
                             <a class=" py-3 px-5" href="{{ route('login') }}">LOGIN</a>
                         </button>
-                    </div>
-                    <div class="flex items-center gap-6">
-                        <button
-                            class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a class=" py-3 px-5" href="{{ route('register') }}">REGISTER</a>
-                        </button>
-                        <ion-icon onclick="onToggleMenu(this)" name="menu"
-                            class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
                     </div>
                 </div>
                 @endif

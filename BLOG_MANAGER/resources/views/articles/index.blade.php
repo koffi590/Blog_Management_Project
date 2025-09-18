@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}"
+                        <a href="{{ url('/about') }}"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             ABOUT
                         </a>
@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}"
+                        <a href="{{ url('/contact') }}"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             CONTACT US
                         </a>
@@ -94,10 +94,6 @@
                         </button>
                     </div>
                     <div class="flex items-center gap-6">
-                        <button
-                            class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a class=" py-3 px-5" href="{{ route('register') }}">REGISTER</a>
-                        </button>
                         <ion-icon onclick="onToggleMenu(this)" name="menu"
                             class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
                     </div>
@@ -137,50 +133,113 @@
 
     <section class="p-5 mt-1 py-16 text-center text-white bg-cover bg-center ">
         <h2 class="text-2xl mb-6 text-center text-black">• ARTICLES •</h2>
-        @if (Auth::check()) {
-                 <a href="/article/create">
-                    <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
-                        ADD AN ARTICLE
-                    </button>
-                </a>
-            }
-            @endif
-        <div class="grid grid-cols-1 gap-10 p-4 sm:grid-cols-2 md:grid-cols-3 place-content-center gap-10 w-full">
-
-            @foreach($articles as $art)
-                    <div class="bg-[#001840] p-4 rounded-2xl border-black flex flex-col items-center gap-4">
-                        <div class="grid grid-cols-1 gap-10">
-                            <img src="{{ $art->image }}" alt="article_img" class="h-40 w-80 rounded">
-                            <h1 class="font-bold w-60 truncate">{{ $art->title }}</h1>
-                        </div>
-                        <div> </div>
-                        <div class="font-bold">
-                            <p class="w-60 truncate text-gray-400">{{ $art->description }}</p>
-                        </div>
-                        <div class="grid grid-cols-2">
-                           <!-- <div class="flex flex-row gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                                </svg>
-                                <p class="text-[#a0aec0] dark:text-white-400/50">{{ $art->user->name }}</p>
-                            </div>
-                            <div class="flex flex-row gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
-                                </svg>
-                                <p class="text-[#a0aec0] dark:text-white-400/50 text-wrap">{{ $art->created_at }}</p></div> -->
-                            </div>
-                           <a href="{{ url('articles' , [ 'id' => $art->id ]) }}">
-                                <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
-                                    SEE MORE
-                                </button>
-                            </a>
-                        </div>
-                @endforeach
-        </div>
-         {{ $articles->links() }}
     </section>
+    @if(count($articles) < 1)
+    <p class="text-xl mb-6 w-full text-center text-black"> THERE'S NO ARTICLE</p>
+    <p class="text-xl mb-6 w-full text-center text-black"> START WRITE YOUR</p>
+    @endif
+    <div class="flex flex-row items-center justify-center p-4">
+                <div class="px-60">
+                    
+                </div>
+                @if (Auth::check())
+                    <a href="/article/create">
+                        <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
+                            ADD AN ARTICLE
+                        </button>
+                    </a>
+                @endif
+            </div>
+    @foreach ($articles as $article)
+    <section class="p-5 mt-1 py-8 text-center text-white bg-cover bg-center w-full">
+        <div class="grid grid-cols-1">
+            <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
+                <div class="bg-[#001840] flex flex-row gap-2 py-2 p-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="grey" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        <h1 class="block text-lg leading-tight font-medium text-white">
+                            {{ $article->user->name }}
+                        </h1>
+                    </div>
+                    <div class="bg-[#001840] grid grid-cols-2">
+                        <div class="flex flex-row p-5">
+                        <h1 class="font-bold text-white mt-2">{{ $article->title }}</h1>
+                        </div>
+                        <div class="flex flex-row-reverse p-5 text-gray-400">
+                            {{ $article->created_at }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="bg-[#001840] md:flex">
+                        <div class="md:shrink-0 p-4">
+                            <img class="w-60 h-60 md:flex h-50 w-full"
+                                    src="{{ $article->image }}"
+                                    alt="logo">
+                        </div>
 
+                        <div class="p-8">
+                            <p class="text-gray-400 line-clamp-6 w-80">
+                                {{ $article->description }}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="bg-[#001840] p-8 flex flex-row justify-center">
+                        @if(Auth::check() && auth()->user()->name === $article->user->name)
+                        <div class="flex flex-row gap-2">
+                            <button
+                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                <a href="{{ url('articles' , [ 'id' => $article->id ]) }}">SEE MORE</a>
+                            </button>
+                            <button
+                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                <a href="{{ route('articles.create') }}">COMMENT</a>
+                            </button>
+                            <button
+                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                <a href="{{ url('articles' , [ 'id' => $article->id ]) }}/edit">EDIT</a>
+                            </button>
+                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?');">
+                                @csrf 
+                                @method('DELETE')
+                                <button type="submit" class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                    DELETE
+                                </button>
+                            </form>
+                            <div class="flex flex-row gap-2 hidden">
+                                <form action="" method="post">
+                                <input type="text" class="w-80 text-white py-2 px-3 rounded-full hover:bg-[#a1a19f5d] hover:text-black">
+                                <button
+                                    class="w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                    <a href="{{ url('articles' , [ 'id' => $article->id ]) }}/edit">comment</a>
+                                </button>
+                            </div>
+                        </div>
+                        @else
+                        <div class="flex flex-row gap-2">
+                        <button
+                            class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                            <a href="{{ url('articles' , [ 'id' => $article->id ]) }}">SEE MORE</a>
+                        </button>
+                        <button
+                            class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                            <a href="{{ route('articles.create') }}">COMMENT</a>
+                        </button>
+                        </div>
+                        @endif
+                    </div>
+            </div>
+        </div>
+
+    </section>
+    @endforeach
+    <div class="mt-4 p-5 py-8">
+        {{ $articles->links() }}
+    </div>
+        
     <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-8">
         <ul class="flex flex-row gap-8 justify-center">
             <li><a href="/">HOME</a></li>

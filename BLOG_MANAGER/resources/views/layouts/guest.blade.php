@@ -64,46 +64,6 @@
                             </li>
                         </ul>
                     </div>
-                <div class="relative inline-block text-left h-[44px]">
-                    @if (Auth::check())
-                    <button id="userBtn" class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                        {{ auth()->user()->name }}
-                    </button>
-                    <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="flex gap-1 w-full text-left px-4 py-2 hover:bg-gray-200">
-                                Déconnexion
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 my-auto ml-auto">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
-                                </svg>
-                            </button>
-                        </form>
-                        <button  class="flex gap-1 w-full text-left px-4 py-2 hover:bg-gray-200">
-                            <a href="{{ route('profile.edit') }}">Profil</a>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 my-auto ml-auto">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                            </svg>
-
-                        </button>
-                    </div>
-                    <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
-                    @else
-                   <div class="flex flex-row gap-8">
-                     <div class="flex items-center gap-6">
-                        <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a class=" py-3 px-5" href="{{ route('login') }}">LOGIN</a>
-                        </button>
-                    </div>
-                     <div class="flex items-center gap-6">
-                        <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a class=" py-3 px-5" href="{{ route('register') }}">REGISTER</a>
-                        </button>
-                        <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
-                    </div>
-                   </div>
-                    @endif
-                </div>
             </div>
         </header>
         <div class="w-full h-64 md:h-96 bg-cover bg-center" style="background-image: url('https://i.pinimg.com/736x/ae/48/4a/ae484a15a84631934a735e96ad73147d.jpg');">
