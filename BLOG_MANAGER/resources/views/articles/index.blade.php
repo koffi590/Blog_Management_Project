@@ -117,6 +117,12 @@
                 <p class="text-white text-responsive-body text-sm sm:text-base md:text-lg">Share your kwonledges about
                     themes that interest you...
                 </p>
+                 <div> </div>
+                <div> </div>
+                <button
+                    class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                    <a href="{{ route('articles.create') }}">Let's write an article</a>
+                </button>
             </div>
         </div>
     </div>
@@ -148,7 +154,7 @@
         <div class="grid grid-cols-1">
             <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
                 <div class="bg-[#001840] grid grid-cols-2 py-2 p-3">
-                    <div class="flex flex-row">
+                    <div class="flex flex-row gap-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="grey" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -161,7 +167,7 @@
                     <div class="flex flex-row-reverse">
                         <div class="relative inline-block text-left">
                             @if(Auth::check() && auth()->user()->id === $article->user->id)
-                            <button type="button" class="kebab-menu-btn flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-900 focus:outline-none" class="kebab-menu-btn">
+                            <button type="button" class="kebab-menu-btn flex items-center justify-center w-10 h-10 text-white hover:text-gray-300 focus:outline-none" class="kebab-menu-btn">
                                 <svg class="w-6 h-6" fill="currentColor" aria-hidden="true" viewBox="0 0 20 20">
                                     <path d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4z" clip-rule="evenodd" fill-rule="evenodd"/>
                                 </svg>
@@ -190,7 +196,7 @@
                         <h1 class="font-bold text-white mt-2 truncate">{{ $article->title }}</h1>
                         </div>
                         <div class="flex flex-row-reverse p-5 text-gray-400">
-                            {{ $article->created_at }}
+                            {{ $article->category }}
                         </div>
                     </div>
                     <hr>
@@ -209,11 +215,11 @@
                     </div>
                     <hr>
                     <div class="bg-[#001840] p-8 flex flex-row justify-center">
-                        @if(Auth::check() && auth()->user()->id === $article->user->id)
+                        @if(Auth::check() || auth()->user()->id === $article->user->id)
                         <div class="flex flex-row gap-2">
                             <button
                                 class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                <a href="/">comment</a>
+                                <a href="{{ url('articles', ['id' => $article->id]) }}">comment</a>
                             </button>
                             <div class="flex flex-row gap-2 hidden">
                                 <form action="" method="post">
@@ -282,21 +288,21 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const kebabButtons = document.querySelectorAll('.kebab-menu-btn');
 
             kebabButtons.forEach(button => {
-                button.addEventListener('click', function(event) {
+                button.addEventListener('click', function (event) {
                     event.preventDefault();
 
-                    const menu = button.nextElementSibling; // Ici, je suppose que le menu suit directement le bouton dans le HTML
+                    const menu = button.nextElementSibling;
 
                     menu.classList.toggle('hidden');
                     menu.classList.toggle('opacity-100');
                 });
             });
 
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 if (!event.target.closest('.kebab-menu-btn') && !event.target.closest('.kebab-menu')) {
                     document.querySelectorAll('.kebab-menu').forEach(menu => {
                         menu.classList.add('hidden');
@@ -305,8 +311,6 @@
                 }
             });
         });
-
-
         function showCommentForm(btn) {
             btn.style.display = "none";
             btn.nextElementSibling.classList.remove("hidden");

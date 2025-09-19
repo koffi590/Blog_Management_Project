@@ -144,6 +144,17 @@
                 <form action="{{ route('articles.update', $article)}}" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
                 @method('PUT')
+
+                <!-- category -->
+                <div class="w-80">
+                    <label for="category" class="block font-medium mb-1 text-white">category</label>
+                    <input type="text" name="category" id="category"
+                        class="w-full border p-4 rounded"
+                        style="background-color: white;"
+                        placeholder="Type the category of your article please"
+                        value="{{ old('category', $article->category) }}" required>
+                </div>
+
                 <!-- Titre -->
                 <div>
                     <label for="title" class="block font-medium mb-1 text-white">Title</label>

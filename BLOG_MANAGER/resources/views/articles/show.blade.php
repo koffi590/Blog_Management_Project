@@ -129,7 +129,7 @@
             <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
                 <div class="grid grid-cols-1 bg-[#001840]">
                     <div class="bg-[#001840] grid grid-cols-2 py-2 p-3">
-                        <div class="flex flex-row gap-2">
+                        <div class="flex flex-row gap-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="grey" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -143,8 +143,7 @@
                             <div class="relative inline-block text-left">
                                 @if(Auth::check() && auth()->user()->id === $article->user->id)
                                 <button type="button"
-                                    class="kebab-menu-btn flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-900 focus:outline-none"
-                                    class="kebab-menu-btn">
+                                    class="kebab-menu-btn flex items-center justify-center w-10 h-10 text-white hover:text-gray-300 focus:outline-none">
                                     <svg class="w-6 h-6" fill="currentColor" aria-hidden="true" viewBox="0 0 20 20">
                                         <path
                                             d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4z"
@@ -157,8 +156,6 @@
                                     <div class="py-1">
                                         <a href="{{ route('articles.create') }}"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Add</a>
-                                        <a href="{{ url('articles', ['id' => $article->id]) }}"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
                                         <a href="{{ url('articles', ['id' => $article->id]) }}/edit"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
                                         <form action="{{ route('articles.destroy', $article->id) }}" method="POST"
@@ -179,11 +176,17 @@
                 </div>
                     <hr>
                     <div class="grid grid-cols-2 bg-[#001840]">
-                        <div class="flex flex-row p-5">
-                        <h1 class="font-bold text-white mt-2">{{ $article->title }}</h1>
+                        <div class="grid grid-row-2">
+                                <h1 class="block text-md p-2 leading-tight font-medium text-white">
+                                    {{ $article->title }}
+                                </h1>
+                                <!-- <p class="block text-sm leading-tight text-gray-400 font-medium">
+                                    {{ $article->category }}
+                                </p> -->
                         </div>
+                            
                         <div class="flex flex-row-reverse p-5 text-gray-400">
-                            {{ $article->created_at }}
+                            {{ $article->category }}
                         </div>
                     </div>
                     <hr>
@@ -201,40 +204,12 @@
                     </div>
                     <hr>
                     <div class="p-8 flex flex-row justify-center bg-[#001840]">
-                        @if(Auth::check() && auth()->user()->name === $article->user->name)
-                        <div class="flex flex-row gap-2">
-                            <button
-                                class="flex justify-center w-auto bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                <a href="{{ route('articles.create') }}">COMMENT</a>
-                            </button>
-                            <button
-                                class="flex justify-center w-auto bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                <a href="{{ url('articles' , [ 'id' => $article->id ]) }}/edit">EDIT</a>
-                            </button>
-                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="flex justify-center w-auto bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                DELETE
-                            </button>
-                            </form>
-                            <div class="commentForm flex flex-row gap-2 hidden">
-                                <form action="" method="post">
-                                <input type="text" class="w-80 text-white py-2 px-3 rounded-full hover:bg-[#a1a19f5d] hover:text-black">
-                                <button
-                                    class="w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                    <a href="{{ url('articles' , [ 'id' => $article->id ]) }}/edit">Edit</a>
-                                </button>
-                            </div>
-                        </div>
-                        @else
                         <div class="flex flex-row gap-2">
                         <button
                             class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a href="/">Back</a>
+                            <a href="/articles">Back</a>
                         </button>
                         </div>
-                        @endif
                     </div>
             </div>
             <div class="felx flex-cols-2 py-2 px-8">
@@ -242,18 +217,79 @@
 
                 </div>
                 <div class="flex flex-row">
-                    <div class="flex justify-center mt-8">
-                        <div class="w-auto flex flex-row gap-2">
-                            <input type="text" name="search" placeholder="Your comment..." value="comment" class="w-full p-3 pl-10 rounded-full bg-gray-200" autocomplete="off">
-                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?');">
+                    <form action="{{ route('comments.store') }}" method="POST">
+                        @csrf
+                        <div class="flex gap-2 w-auto">
+                            <div>
+                                <input type="text" name="content" value="" placeholder="your comment" class="w-full text-black p-3 pl-10 rounded-full" autocomplete="off">
+                            </div>
+                            <div class="hidden">
+                                <input type="text" name="article_id" value="{{ $article->id }}">
+                            </div>
+                            <div>
+                                <button type="submit" class="flex justify-center w-auto bg-[#f5c400] text-white py-2 px-2 mt-1 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                    Comment
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="text-black">
+                    @foreach($article->comments()->whereNull('parent_id')->orderBy('created_at','desc')->get() as $comment)
+                    <div class="grid grid-cols-1 text-black mt-4 p-2 py-2 py-3 bg-gray-100 rounded-xl ">
+                        <div class="grid grid-cols-auto">
+                            <div class="grid grid-cols-3 text-center ">
+                                <div class="flex felx-row gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="black" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                </svg>
+                                <h1 class="block text-lg leading-tight font-medium text-black">
+                                    {{ $comment->user->name  }}:
+                                </h1>
+                                </div>
+                                <div class="flex flex-cols-1 justify-center">
+                                    {{ $comment->content }}
+                                </div>
+                                @if(auth()->user()->id === $article->user->id && auth()->user()->id === $comment->user->id || auth()->user()->id === $comment->user->id)
+                                <div class="flex flex-row-reverse gap-2">
+                                    
+                                    <form action="{{ route('comments.destroy', $comment->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 hover:text-red-500">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                            </svg>
+                                        </button>
+                                    </form>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 hover:text-cyan-500">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                    </svg>
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 hover:text-green-500">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                    </svg> -->
+                                </div>
+                                @else
+                                <button type="submit" onclick="toggleReplyForm('{{$comment->id}}')" class="reply flex flex-row-reverse gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                                    </svg>
+                                </button>
+                                @endif
+                            </div>
+                            <form id="reply-form-{{$comment->id}}" action="{{ route('comments.store') }}" method="POST" class="hidden mt-2 reply">
                                 @csrf
-                                @method('POST')
-                                <button type="submit" class="flex justify-center w-auto bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                Comment
-                            </button>
+                                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                                <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                                <input type="text" name="content" placeholder="Reply to {{ $comment->user->name }}" class="w-40 p-2 border rounded-full" required>
+                                <button type="submit" class="bg-[#f5c400] text-white px-4 py-2 rounded-full mt-2">Send</button>
                             </form>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -295,31 +331,34 @@
             }
         });
 
-        function showCommentForm(btn) {
-            btn.style.display = "none";
-            btn.nextElementSibling.classList.remove("hidden");
-        }
-        function hideCommentForm(btn) {
-            btn.parentElement.classList.add("hidden");
-            btn.parentElement.previousElementSibling.style.display =
-                "block";
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const kebabButtons = document.querySelectorAll('.kebab-menu-btn');
+
+            kebabButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    const menu = button.nextElementSibling;
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('opacity-100');
+                });
+            });
+
+            window.addEventListener('click', function (event) {
+                if (!event.target.closest('.kebab-menu-btn') && !event.target.closest('.kebab-menu')) {
+                    document.querySelectorAll('.kebab-menu').forEach(menu => {
+                        menu.classList.add('hidden');
+                        menu.classList.remove('opacity-100');
+                    });
+                }
+            });
+        });
+
         function toggleReplyForm(id) {
             let form = document.getElementById("reply-form-" + id);
             form.classList.toggle("hidden");
         }
-
-        function showEditForm(btn) {
-            btn.style.display = "none";
-            btn.nextElementSibling.classList.remove("hidden");
-        }
-        function hideEditForm(btn) {
-            btn.parentElement.classList.add("hidden");
-        }
-        function toggleEditForm(id) {
-            let form = document.getElementById("edit-form-" + id);
-            form.classList.toggle("hidden");
-        }
+        
     </script>
 </body>
 

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,6 +25,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::resource('comments', CommentController::class);
     Route::get('/article/create', [ArticleController::class, 'create'])->name('articles.create');
     Route::post('/article/create', [ArticleController::class, 'store'])->name('articles.store');
     Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');

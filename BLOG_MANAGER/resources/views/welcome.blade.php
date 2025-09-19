@@ -178,15 +178,16 @@
     </section>
 
     <h2 class="text-2xl mb-6 w-full text-center text-black">• ARTICLES •</h2>
-    @if(count($articles) < 1) <p class="text-xl mb-6 w-full text-center text-black"> THERE'S NO ARTICLE</p>
-        <p class="text-xl mb-6 w-full text-center text-black"> START WRITE YOURS</p>
-        @endif
+    @if(count($articles) < 1) 
+    <p class="text-xl mb-6 w-full text-center text-black"> THERE'S NO ARTICLE</p>
+    <p class="text-xl mb-6 w-full text-center text-black"> START WRITE YOURS</p>
+    @endif
         @foreach ($articles as $article)
         <section class="p-5 mt-1 py-8 text-center text-white bg-cover bg-center w-full">
             <div class="grid grid-cols-1">
                 <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
                     <div class="bg-[#001840] grid grid-cols-2 py-2 p-3">
-                        <div class="flex flex-row">
+                        <div class="flex flex-row gap-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="grey" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -200,8 +201,7 @@
                             <div class="relative inline-block text-left">
                                 @if(Auth::check() && auth()->user()->id === $article->user->id)
                                 <button type="button"
-                                    class="kebab-menu-btn flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-900 focus:outline-none"
-                                    class="kebab-menu-btn">
+                                    class="kebab-menu-btn flex items-center justify-center w-10 h-10 text-white hover:text-gray-300 focus:outline-none">
                                     <svg class="w-6 h-6" fill="currentColor" aria-hidden="true" viewBox="0 0 20 20">
                                         <path
                                             d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4z"
@@ -238,7 +238,7 @@
                             <h1 class="font-bold text-white mt-2 truncate">{{ $article->title }}</h1>
                         </div>
                         <div class="flex flex-row-reverse p-5 text-gray-400">
-                            {{ $article->created_at }}
+                            {{ $article->category }}
                         </div>
                     </div>
                     <hr>
@@ -268,6 +268,7 @@
 
                 </div>
             </div>
+            </section>
             @endforeach
             <section class="p-5 text-center bg-center flex flex-col">
                 <div class="flex flex-row justify-center item-center">
@@ -387,20 +388,6 @@
                         }
                     });
                 });
-
-
-                function toggleReplyForm(id) {
-                    let form = document.getElementById("reply-form-" + id);
-                    form.classList.toggle("hidden");
-                }
-
-                function showEditForm(btn) {
-                    btn.style.display = "none";
-                    btn.nextElementSibling.classList.remove("hidden");
-                }
-                function hideEditForm(btn) {
-                    btn.parentElement.classList.add("hidden");
-                }
 
                 // document.addEventListener('DOMContentLoaded', function() {
                 //     const deleteButton = document.querySelectorAll('.deleteBtn')
