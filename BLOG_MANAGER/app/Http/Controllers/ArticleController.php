@@ -41,6 +41,7 @@ class ArticleController extends Controller
             'title' => 'required|string|max:255',
            'image' => 'nullable|url',
             'description' => 'required|string',
+            'category' => 'required|string',
 
         ]);
 
@@ -48,6 +49,7 @@ class ArticleController extends Controller
             'title'   => $request->title,
             'image' => $request->image,
             'description' => $request->description,
+            'category' => $request->category,
             'user_id' => Auth::id(),
         ]);
 
@@ -80,6 +82,7 @@ class ArticleController extends Controller
             'title' => 'required|string|max:255',
            'image' => 'nullable|url',
            'description' => 'required|string',
+           'category' => 'required|string',
         ]);
 
         $article->update($updateData);
@@ -90,7 +93,7 @@ class ArticleController extends Controller
     public function allArticles() {
         $articles = Article::with(['user'])
                     ->latest()
-                    ->paginate(2);
+                    ->paginate(4);
         return view('articles.index', compact('articles'));
     }
     /**

@@ -39,7 +39,7 @@
                 {{ __('Login') }}
             </x-primary-button>
         </div>
-        <a class="flex flex-row justify-center underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+        <a class="flex flex-row justify-center underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
            Don't have any account? {{ __('Register') }}
         </a>
     </form>

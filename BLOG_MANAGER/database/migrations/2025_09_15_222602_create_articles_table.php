@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->longtext('description');
             $table->string('image')->nullable();
+            $table->string('category');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); # Ceci relie automatiquement le champs au champ id dans la table user
             $table->timestamps();
         });

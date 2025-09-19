@@ -36,19 +36,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}"
+                        <a href="/about"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             ABOUT
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}"
+                        <a href="/articles"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             ARTICLES
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}"
+                        <a href="/contact"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             CONTACT US
                         </a>
@@ -57,10 +57,16 @@
             </div>
             <div class="relative inline-block text-left h-[44px]">
                 @if (Auth::check())
-                <button id="userBtn"
-                    class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                    {{ auth()->user()->name }}
-                </button>
+                <div class="flex flex-row gap-6">
+                    <button id="userBtn"
+                        class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                        {{ auth()->user()->name }}
+                    </button>
+                    <div class="flex items-center gap-6">
+                        <ion-icon onclick="onToggleMenu(this)" name="menu"
+                            class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
+                    </div>
+                </div>
                 <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -83,10 +89,8 @@
 
                     </button>
                 </div>
-                <ion-icon onclick="onToggleMenu(this)" name="menu"
-                    class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
                 @else
-                <div class="flex flex-row gap-8">
+               <div class="flex flex-row gap-6">
                     <div class="flex items-center gap-6">
                         <button
                             class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
@@ -158,45 +162,44 @@
             </div> -->
             <div class="flex flex-row items-center justify-center p-4">
                 <div class="px-60">
-                    
+
                 </div>
                 <button class="bg-[#f5c400] text-white w-20 py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
                     <a href="/">back</a>
                 </button>
             </div>
             <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-2 bg-[#001840]">
                 <div class="flex flex-row gap-2 py-2 p-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="black" class="size-6">
+                            stroke="gray" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         </svg>
-                        <h1 class="block text-lg leading-tight font-medium text-black">
+                        <h1 class="block text-lg leading-tight font-medium text-white">
                             {{ $article->user->name }}
                         </h1>
                 </div>
             </div>
-            
+
                     <hr>
-                    <div class="grid grid-cols-2">
+                    <div class="grid grid-cols-2 bg-[#001840]">
                         <div class="flex flex-row p-5">
-                        <h1 class="font-bold text-black mt-2">{{ $article->title }}</h1>
+                        <h1 class="font-bold text-white mt-2">{{ $article->title }}</h1>
                         </div>
                         <div class="flex flex-row-reverse p-5 text-gray-400">
                             {{ $article->created_at }}
                         </div>
                     </div>
                     <hr>
-                    <div class="md:flex">
+                    <div class="md:flex flex-col">
                         <div class="md:shrink-0 p-4">
                             <img class="w-60 h-60 md:flex h-50 w-full"
                                     src="{{ $article->image }}"
                                     alt="logo">
-                        </div>
-
-                        <div class="p-8">
-                            <p class="text-gray-500 line-clamp-6 w-80">
+                        </div><hr>
+                        <div class="p-8 bg-[#001840]">
+                            <p class="text-gray-500  w-auto">
                                 {{ $article->description }}
                             </p>
                         </div>
@@ -206,21 +209,17 @@
                         @if(Auth::check() && auth()->user()->name === $article->user->name)
                         <div class="flex flex-row gap-2">
                             <button
-                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                <a href="{{ url('articles' , [ 'id' => $article->id ]) }}">SEE MORE</a>
-                            </button>
-                            <button
-                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                class="flex justify-center w-auto bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
                                 <a href="{{ route('articles.create') }}">COMMENT</a>
                             </button>
                             <button
-                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                class="flex justify-center w-auto bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
                                 <a href="{{ url('articles' , [ 'id' => $article->id ]) }}/edit">EDIT</a>
                             </button>
                             <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?');">
-                                @csrf 
+                                @csrf
                                 @method('DELETE')
-                                <button type="submit" class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                <button type="submit" class="flex justify-center w-auto bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
                                 DELETE
                             </button>
                             </form>
@@ -245,14 +244,14 @@
             </div>
         </div>
     </section>
-    <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-8">
+    <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-2 grid grid-rows-2">
         <ul class="flex flex-row gap-8 justify-center">
             <li><a href="/">HOME</a></li>
             <li><a href="/about">ABOUT</a></li>
             <li><a href="/articles">ARTICLES</a></li>
             <li><a href="/contact">CONTACT US</a></li>
-        </ul
-        <p>&copy; 2025 BLOGER. All rights reserved.</p>
+        </ul>
+        <p> &copy; 2025 BLOGER. All rights reserved.</p>
     </footer>
     <script>
         const navLinks = document.querySelector(".nav-links");

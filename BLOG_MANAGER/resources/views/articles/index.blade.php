@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -20,7 +21,7 @@
 
 <body class="flex flex-col min-h-screen scroll-auto">
     <header class="bg-[#001840] h-15">
-        <div class="flex justify-between items-center p-2.5 w-[85%] mx-auto">
+        <div class="flex text-nowrap justify-between items-center p-2.5 w-[85%] mx-auto">
             <a href="/">
                 <img class="w-12 h-12"
                     src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg"
@@ -36,19 +37,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/about') }}"
+                        <a href="/about"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             ABOUT
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/articles') }}"
+                        <a href="/articles"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             ARTICLES
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/contact') }}"
+                        <a href="/contact"
                             class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/80 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                             CONTACT US
                         </a>
@@ -57,10 +58,16 @@
             </div>
             <div class="relative inline-block text-left h-[44px]">
                 @if (Auth::check())
-                <button id="userBtn"
-                    class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                    {{ auth()->user()->name }}
-                </button>
+                <div class="flex flex-row gap-6">
+                    <button id="userBtn"
+                        class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                        {{ auth()->user()->name }}
+                    </button>
+                    <div class="flex items-center gap-6">
+                        <ion-icon onclick="onToggleMenu(this)" name="menu"
+                            class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
+                    </div>
+                </div>
                 <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -83,10 +90,8 @@
 
                     </button>
                 </div>
-                <ion-icon onclick="onToggleMenu(this)" name="menu"
-                    class="text-3xl cursor-pointer md:hidden fill-current:white text-white"></ion-icon>
                 @else
-                <div class="flex flex-row gap-8">
+               <div class="flex flex-row gap-6">
                     <div class="flex items-center gap-6">
                         <button
                             class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
@@ -138,35 +143,51 @@
     <p class="text-xl mb-6 w-full text-center text-black"> THERE'S NO ARTICLE</p>
     <p class="text-xl mb-6 w-full text-center text-black"> START WRITE YOUR</p>
     @endif
-    <div class="flex flex-row items-center justify-center p-4">
-                <div class="px-60">
-                    
-                </div>
-                @if (Auth::check())
-                    <a href="/article/create">
-                        <button class="bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
-                            ADD AN ARTICLE
-                        </button>
-                    </a>
-                @endif
-            </div>
     @foreach ($articles as $article)
     <section class="p-5 mt-1 py-8 text-center text-white bg-cover bg-center w-full">
         <div class="grid grid-cols-1">
             <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
-                <div class="bg-[#001840] flex flex-row gap-2 py-2 p-3">
+                <div class="bg-[#001840] grid grid-cols-2 py-2 p-3">
+                    <div class="flex flex-row">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="grey" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        stroke="grey" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         </svg>
                         <h1 class="block text-lg leading-tight font-medium text-white">
                             {{ $article->user->name }}
                         </h1>
                     </div>
+                    <div class="flex flex-row-reverse">
+                        <div class="relative inline-block text-left">
+                            @if(Auth::check() && auth()->user()->id === $article->user->id)
+                            <button type="button" class="kebab-menu-btn flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-900 focus:outline-none" class="kebab-menu-btn">
+                                <svg class="w-6 h-6" fill="currentColor" aria-hidden="true" viewBox="0 0 20 20">
+                                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4z" clip-rule="evenodd" fill-rule="evenodd"/>
+                                </svg>
+                            </button>
+
+                            <div class="kebab-menu hidden absolute right-0 w-48 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div class="py-1">
+                                <a href="{{ route('articles.create') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Add</a>
+                                <a href="{{ url('articles', ['id' => $article->id]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                                <a href="{{ url('articles', ['id' => $article->id]) }}/edit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
+                                        Delete
+                                    </button>
+                                </form>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                        </div>
+                    </div>
                     <div class="bg-[#001840] grid grid-cols-2">
                         <div class="flex flex-row p-5">
-                        <h1 class="font-bold text-white mt-2">{{ $article->title }}</h1>
+                        <h1 class="font-bold text-white mt-2 truncate">{{ $article->title }}</h1>
                         </div>
                         <div class="flex flex-row-reverse p-5 text-gray-400">
                             {{ $article->created_at }}
@@ -174,41 +195,26 @@
                     </div>
                     <hr>
                     <div class="bg-[#001840] md:flex">
-                        <div class="md:shrink-0 p-4">
+                        <div class="md:shrink-0 p-2">
                             <img class="w-60 h-60 md:flex h-50 w-full"
                                     src="{{ $article->image }}"
                                     alt="logo">
                         </div>
 
-                        <div class="p-8">
-                            <p class="text-gray-400 line-clamp-6 w-80">
+                        <div class="p-2">
+                            <p class="text-gray-300 line-clamp-5 w-full">
                                 {{ $article->description }}
                             </p>
                         </div>
                     </div>
                     <hr>
                     <div class="bg-[#001840] p-8 flex flex-row justify-center">
-                        @if(Auth::check() && auth()->user()->name === $article->user->name)
+                        @if(Auth::check() && auth()->user()->id === $article->user->id)
                         <div class="flex flex-row gap-2">
                             <button
                                 class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                <a href="{{ url('articles' , [ 'id' => $article->id ]) }}">SEE MORE</a>
+                                <a href="/">comment</a>
                             </button>
-                            <button
-                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                <a href="{{ route('articles.create') }}">COMMENT</a>
-                            </button>
-                            <button
-                                class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                <a href="{{ url('articles' , [ 'id' => $article->id ]) }}/edit">EDIT</a>
-                            </button>
-                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?');">
-                                @csrf 
-                                @method('DELETE')
-                                <button type="submit" class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                    DELETE
-                                </button>
-                            </form>
                             <div class="flex flex-row gap-2 hidden">
                                 <form action="" method="post">
                                 <input type="text" class="w-80 text-white py-2 px-3 rounded-full hover:bg-[#a1a19f5d] hover:text-black">
@@ -219,35 +225,34 @@
                             </div>
                         </div>
                         @else
-                        <div class="flex flex-row gap-2">
+                         <div class="flex flex-row gap-20">
                         <button
-                            class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a href="{{ url('articles' , [ 'id' => $article->id ]) }}">SEE MORE</a>
+                            class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                            <a href="{{ url('articles' , [ 'id' => $article->id ]) }}">See more</a>
                         </button>
                         <button
-                            class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a href="{{ route('articles.create') }}">COMMENT</a>
+                            class="flex justify-center w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                            <a href="{{ route('articles.create') }}">comment</a>
                         </button>
                         </div>
                         @endif
                     </div>
             </div>
         </div>
-
     </section>
     @endforeach
     <div class="mt-4 p-5 py-8">
         {{ $articles->links() }}
     </div>
-        
-    <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-8">
+
+   <footer class="py-8 text-center text-sm text-white dark:text-white/70 bg-[#001840] h-15 gap-2 grid grid-rows-2">
         <ul class="flex flex-row gap-8 justify-center">
             <li><a href="/">HOME</a></li>
             <li><a href="/about">ABOUT</a></li>
             <li><a href="/articles">ARTICLES</a></li>
             <li><a href="/contact">CONTACT US</a></li>
-        </ul
-        <p>&copy; 2025 BLOGER. All rights reserved.</p>
+        </ul>
+        <p> &copy; 2025 BLOGER. All rights reserved.</p>
     </footer>
     <script>
         const navLinks = document.querySelector(".nav-links");
@@ -277,6 +282,31 @@
             }
         });
 
+        document.addEventListener('DOMContentLoaded', function() {
+            const kebabButtons = document.querySelectorAll('.kebab-menu-btn');
+
+            kebabButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const menu = button.nextElementSibling; // Ici, je suppose que le menu suit directement le bouton dans le HTML
+
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('opacity-100');
+                });
+            });
+
+            window.addEventListener('click', function(event) {
+                if (!event.target.closest('.kebab-menu-btn') && !event.target.closest('.kebab-menu')) {
+                    document.querySelectorAll('.kebab-menu').forEach(menu => {
+                        menu.classList.add('hidden');
+                        menu.classList.remove('opacity-100');
+                    });
+                }
+            });
+        });
+
+
         function showCommentForm(btn) {
             btn.style.display = "none";
             btn.nextElementSibling.classList.remove("hidden");
@@ -291,17 +321,6 @@
             form.classList.toggle("hidden");
         }
 
-        function showEditForm(btn) {
-            btn.style.display = "none";
-            btn.nextElementSibling.classList.remove("hidden");
-        }
-        function hideEditForm(btn) {
-            btn.parentElement.classList.add("hidden");
-        }
-        function toggleEditForm(id) {
-            let form = document.getElementById("edit-form-" + id);
-            form.classList.toggle("hidden");
-        }
     </script>
 </body>
 
