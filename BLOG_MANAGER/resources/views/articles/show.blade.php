@@ -124,64 +124,59 @@
             </div>
         </div>
     </div>
- <section class="p-5 mt-1 py-16 text-center text-white bg-cover bg-center w-full">
-        <div class="grid grid-cols-1">
-            <!-- <div class="p-8 flex flex-col justify-center ">
-                <div class="flex flex-col gap-2">
-                    <div class="flex flex-row gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="black" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                        <h1 class="block text-lg leading-tight font-medium text-black">
-                            {{ $article->user->name }}
-                        </h1>
-                    </div>
-                    <div class="mt-5 md:shrink-0">
-                        <a href="/">
-                            <img class="w-60 h-60 md:flex h-50"
-                                src="https://images-platform.99static.com//ZhRjGjw-f9DnuFcS0MLa_rt-Xtg=/796x702:1333x1239/fit-in/500x500/projects-files/134/13414/1341412/f2fb5d50-afe3-4269-962d-3d4cc50b86a9.jpg"
-                                alt="logo">
-                        </a>
-                    </div>
-                     <div class="flex flex-col">
-                        <div class="md-5">
-                            <p class="mt-2 text-gray-500 flex flex-row">
-                                Looking to spend your time-out writing to share experiences you had or some knowledges
-                                with others, joking, making fun and share your feelings with your followers...
-                            </p>
-                        </div>
-                        <div class="md-5">
-                            <p class="mt-2 text-gray-500">
-                               oiuop {{ $article->description }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <div class="flex flex-row items-center justify-center p-4">
-                <div class="px-60">
-
-                </div>
-                <button class="bg-[#f5c400] text-white w-20 py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black px-4 py-2 font-bold">
-                    <a href="/">back</a>
-                </button>
-            </div>
+    <section class="p-5 mt-1 py-16 text-center text-white bg-cover bg-center w-full">
+        <div class="grid grid-cols-2">
             <div class="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-md md:max-w-2xl">
-            <div class="grid grid-cols-2 bg-[#001840]">
-                <div class="flex flex-row gap-2 py-2 p-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="gray" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                        <h1 class="block text-lg leading-tight font-medium text-white">
-                            {{ $article->user->name }}
-                        </h1>
-                </div>
-            </div>
+                <div class="grid grid-cols-1 bg-[#001840]">
+                    <div class="bg-[#001840] grid grid-cols-2 py-2 p-3">
+                        <div class="flex flex-row gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="grey" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                            <h1 class="block text-lg leading-tight font-medium text-white">
+                                {{ $article->user->name }}
+                            </h1>
+                        </div>
+                        <div class="flex flex-row-reverse">
+                            <div class="relative inline-block text-left">
+                                @if(Auth::check() && auth()->user()->id === $article->user->id)
+                                <button type="button"
+                                    class="kebab-menu-btn flex items-center justify-center w-10 h-10 text-gray-600 hover:text-gray-900 focus:outline-none"
+                                    class="kebab-menu-btn">
+                                    <svg class="w-6 h-6" fill="currentColor" aria-hidden="true" viewBox="0 0 20 20">
+                                        <path
+                                            d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4zm0 6a2 2 0 110-4 2 2 0 010 4z"
+                                            clip-rule="evenodd" fill-rule="evenodd" />
+                                    </svg>
+                                </button>
 
+                                <div
+                                    class="kebab-menu hidden absolute right-0 w-48 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                    <div class="py-1">
+                                        <a href="{{ route('articles.create') }}"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Add</a>
+                                        <a href="{{ url('articles', ['id' => $article->id]) }}"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Details</a>
+                                        <a href="{{ url('articles', ['id' => $article->id]) }}/edit"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                                        <form action="{{ route('articles.destroy', $article->id) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to delete this article?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     <hr>
                     <div class="grid grid-cols-2 bg-[#001840]">
                         <div class="flex flex-row p-5">
@@ -199,13 +194,13 @@
                                     alt="logo">
                         </div><hr>
                         <div class="p-8 bg-[#001840]">
-                            <p class="text-gray-500  w-auto">
+                            <p class="text-gray-500">
                                 {{ $article->description }}
                             </p>
                         </div>
                     </div>
                     <hr>
-                    <div class="p-8 flex flex-row justify-center">
+                    <div class="p-8 flex flex-row justify-center bg-[#001840]">
                         @if(Auth::check() && auth()->user()->name === $article->user->name)
                         <div class="flex flex-row gap-2">
                             <button
@@ -228,7 +223,7 @@
                                 <input type="text" class="w-80 text-white py-2 px-3 rounded-full hover:bg-[#a1a19f5d] hover:text-black">
                                 <button
                                     class="w-40 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                                    <a href="{{ url('articles' , [ 'id' => $article->id ]) }}/edit">comment</a>
+                                    <a href="{{ url('articles' , [ 'id' => $article->id ]) }}/edit">Edit</a>
                                 </button>
                             </div>
                         </div>
@@ -236,11 +231,30 @@
                         <div class="flex flex-row gap-2">
                         <button
                             class="flex justify-center w-60 bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
-                            <a href="{{ route('articles.create') }}">COMMENT</a>
+                            <a href="/">Back</a>
                         </button>
                         </div>
                         @endif
                     </div>
+            </div>
+            <div class="felx flex-cols-2 py-2 px-8">
+                <div class="flex flex-row">
+
+                </div>
+                <div class="flex flex-row">
+                    <div class="flex justify-center mt-8">
+                        <div class="w-auto flex flex-row gap-2">
+                            <input type="text" name="search" placeholder="Your comment..." value="comment" class="w-full p-3 pl-10 rounded-full bg-gray-200" autocomplete="off">
+                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this article?');">
+                                @csrf
+                                @method('POST')
+                                <button type="submit" class="flex justify-center w-auto bg-[#f5c400] text-white py-2 px-3 rounded-full hover:bg-[#ffdc5f] hover:text-black">
+                                Comment
+                            </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
